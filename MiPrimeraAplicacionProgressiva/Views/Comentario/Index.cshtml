@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<label class="mt-2 mb-2">Ingrese su comentario</label>
+<textarea class="form-control" id="txtcompartir" rows="10"></textarea>
+
+<button class="btn btn-primary mt-4" onclick="Compartir()">Compartir</button>
+
+<script>
+
+    window.onload = function(){
+        var contenido = "";
+        var parsedUrl = new URL(window.location.toString());
+
+        var textoCompartir = parsedUrl.searchParams.get("texto");
+        var tituloCompartir = parsedUrl.searchParams.get("titulo");
+        var urlCompartir = parsedUrl.searchParams.get("url");
+        if (tituloCompartir != null) {
+            contenido += tituloCompartir + "\n"; 
+        }
+        if(textoCompartir != null){
+            contenido += textoCompartir + "\n";; 
+        }
+        if (urlCompartir != null) {
+            contenido += urlCompartir + "\n";;
+           
+        }
+        set("txtcompartir", contenido);
+    }
+
+</script>
